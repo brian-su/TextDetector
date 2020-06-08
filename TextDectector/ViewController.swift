@@ -25,6 +25,9 @@ class ViewController: UIViewController {
         textRecognitionRequest.recognitionLevel = .accurate
         textRecognitionRequest.revision = VNRecognizeTextRequestRevision1
         textRecognitionRequest.usesLanguageCorrection = true
+        
+        resultsLabel.lineBreakMode = .byWordWrapping
+        resultsLabel.numberOfLines = 0
     }
 
     @IBAction func cameraButtonPressed(_ sender: UIBarButtonItem) {
@@ -68,7 +71,7 @@ class ViewController: UIViewController {
                 let doubley = Double(box!.topLeft.y)
                 let doublex = round(100*Double(box!.topLeft.x))/100
                 
-                scannedText.append(contentsOf: "text: \(candidiate.string) \n\n")
+                scannedText.append(contentsOf: "text: \(candidiate.string) \n")
             } catch {
                 //Should prolly do something proper
                 print(error)
@@ -76,6 +79,7 @@ class ViewController: UIViewController {
         }
         
         self.resultsLabel.text = scannedText
+        print(scannedText)
     }
 }
 
